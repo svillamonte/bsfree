@@ -1,0 +1,15 @@
+<article>
+    <header>
+        <h1>@shout.Nick</h1>
+        <p>@shout.Body</p>
+    </header>
+    <div>
+        <img src="@shout.ImageUri" />
+    </div>
+</article>
+
+@functions 
+{
+    [Parameter]
+    Shout shout { get; set; }
+}

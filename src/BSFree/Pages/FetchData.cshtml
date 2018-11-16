@@ -14,15 +14,7 @@ else
 {
     @foreach (var shout in shouts)
     {
-        <article>
-            <div>
-                <h3>@shout.Nick</h3>
-            </div>
-            <div>
-                <p>@shout.Body</p>
-                <img src="@shout.ImageUri" />
-            </div>
-        </article>
+        <ShoutDisplay shout="@shout" />
     }
 }
 </main>
