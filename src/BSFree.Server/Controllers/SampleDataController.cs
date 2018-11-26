@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BSFree.Server.Services;
+using BSFree.Shared;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,13 @@ namespace BSFree.Server.Controllers
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {
+        private readonly ShoutsClient _shoutsClient;
+
+        public SampleDataController(ShoutsClient shoutsClient)
+        {
+            _shoutsClient = shoutsClient;
+        }
+
         private static string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -24,6 +33,12 @@ namespace BSFree.Server.Controllers
                 TemperatureC = rng.Next(-20, 55),
                 Summary = Summaries[rng.Next(Summaries.Length)]
             });
+        }
+
+        [HttpGet("[action]")]
+        public ShoutsResponse Shouts()
+        {
+            return _shoutsClient.GetShouts().Result;
         }
     }
 }

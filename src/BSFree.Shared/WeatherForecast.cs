@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BSFree.Server
+namespace BSFree.Shared
 {
     public class WeatherForecast
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace BSFree.Services
+namespace BSFree.Shared
 {
     public class Shout
     {
