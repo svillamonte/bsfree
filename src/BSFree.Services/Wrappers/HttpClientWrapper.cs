@@ -1,7 +1,8 @@
+using BSFree.Services.Interfaces;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace BSFree.Server.Services
+namespace BSFree.Services.Wrappers
 {
     public class HttpClientWrapper : IHttpClient
     {

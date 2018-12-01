@@ -1,4 +1,4 @@
-﻿using BSFree.Server.Services;
+﻿using BSFree.Services.Interfaces;
 using BSFree.Shared;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,9 +11,9 @@ namespace BSFree.Server.Controllers
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {
-        private readonly ShoutsClient _shoutsClient;
+        private readonly IShoutsClient _shoutsClient;
 
-        public SampleDataController(ShoutsClient shoutsClient)
+        public SampleDataController(IShoutsClient shoutsClient)
         {
             _shoutsClient = shoutsClient;
         }
@@ -38,7 +38,7 @@ namespace BSFree.Server.Controllers
         [HttpGet("[action]")]
         public ShoutsResponse Shouts()
         {
-            return _shoutsClient.GetShouts().Result;
+            return _shoutsClient.GetLatestShouts().Result;
         }
     }
 }

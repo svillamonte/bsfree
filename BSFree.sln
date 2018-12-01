@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSFree.Server", "src\BSFree.Server\BSFree.Server.csproj", "{CD94FEED-D8D7-44ED-9CB6-CC476593EA13}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSFree.Services", "src\BSFree.Services\BSFree.Services.csproj", "{5DC32F42-C80B-45DA-847E-1D4344C02F3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,18 @@ Global
 		{CD94FEED-D8D7-44ED-9CB6-CC476593EA13}.Release|x64.Build.0 = Release|Any CPU
 		{CD94FEED-D8D7-44ED-9CB6-CC476593EA13}.Release|x86.ActiveCfg = Release|Any CPU
 		{CD94FEED-D8D7-44ED-9CB6-CC476593EA13}.Release|x86.Build.0 = Release|Any CPU
+		{5DC32F42-C80B-45DA-847E-1D4344C02F3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DC32F42-C80B-45DA-847E-1D4344C02F3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DC32F42-C80B-45DA-847E-1D4344C02F3A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5DC32F42-C80B-45DA-847E-1D4344C02F3A}.Debug|x64.Build.0 = Debug|Any CPU
+		{5DC32F42-C80B-45DA-847E-1D4344C02F3A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5DC32F42-C80B-45DA-847E-1D4344C02F3A}.Debug|x86.Build.0 = Debug|Any CPU
+		{5DC32F42-C80B-45DA-847E-1D4344C02F3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DC32F42-C80B-45DA-847E-1D4344C02F3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DC32F42-C80B-45DA-847E-1D4344C02F3A}.Release|x64.ActiveCfg = Release|Any CPU
+		{5DC32F42-C80B-45DA-847E-1D4344C02F3A}.Release|x64.Build.0 = Release|Any CPU
+		{5DC32F42-C80B-45DA-847E-1D4344C02F3A}.Release|x86.ActiveCfg = Release|Any CPU
+		{5DC32F42-C80B-45DA-847E-1D4344C02F3A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +69,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{547EEEC6-AD80-43FF-B4FD-F3C940B40852} = {1234F7EE-84D7-4041-9880-44CF0CDDC7FB}
 		{CD94FEED-D8D7-44ED-9CB6-CC476593EA13} = {1234F7EE-84D7-4041-9880-44CF0CDDC7FB}
+		{5DC32F42-C80B-45DA-847E-1D4344C02F3A} = {1234F7EE-84D7-4041-9880-44CF0CDDC7FB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7193AA6-D06D-4E66-8237-2144E81A5E98}

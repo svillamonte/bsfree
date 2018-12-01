@@ -1,4 +1,6 @@
-﻿using BSFree.Server.Services;
+﻿using BSFree.Services;
+using BSFree.Services.Interfaces;
+using BSFree.Services.Wrappers;
 using Microsoft.AspNetCore.Blazor.Server;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,7 +34,7 @@ namespace BSFree.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IHttpClient, HttpClientWrapper>();
-            services.AddScoped<ShoutsClient>(provider =>
+            services.AddScoped<IShoutsClient, ShoutsClient>(provider =>
             {
                 var httpClient = provider.GetService<IHttpClient>();
                 var apiKey = Configuration["ApiKey"];

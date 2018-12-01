@@ -1,7 +1,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace BSFree.Server.Services
+namespace BSFree.Services.Interfaces
 {
     public interface IHttpClient
     {
