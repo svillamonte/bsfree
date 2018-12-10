@@ -1,12 +1,13 @@
-<article>
-    <header>
-        <h1>@shout.Nick</h1>
-        <p>@shout.Body</p>
-    </header>
-    <div>
-        <img src="@shout.ImageUri" />
+<div class="card mb-4">
+    <img class="card-img-top" src="@shout.ImageUri" alt="Shout #@shout.ShoutId">
+    <div class="card-body">
+        <h2 class="card-title">@shout.Nick</h2>
+        <p class="card-text">@shout.Body</p>
     </div>
-</article>
+    <div class="card-footer text-muted">
+        This is the footer
+    </div>
+</div>
 
 @functions 
 {

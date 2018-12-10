@@ -3,27 +3,26 @@
 
 <h1>Weather forecast</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<main>        
 
-<main>
-@if (shouts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    @foreach (var shout in shouts)
+    @if (shouts == null)
     {
-        <ShoutDisplay shout="@shout" />
+        <p><em>Loading...</em></p>
     }
-}
+    else
+    {
+        @foreach (var shout in shouts)
+        {
+            <ShoutDisplay shout=@shout />
+        }
+    }
 </main>
 
 @functions {
     Shout[] shouts;
-
+    
     protected override async Task OnInitAsync()
     {
-        shouts = await Http.GetJsonAsync<Shout[]>("sample-data/shouts.json");
+        shouts = await Http.GetJsonAsync<Shout[]>("api/Shouts/LatestShoutsCollection");
     }
 }
