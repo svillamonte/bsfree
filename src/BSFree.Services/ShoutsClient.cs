@@ -21,16 +21,13 @@ namespace BSFree.Services
             _apiKey = apiKey;
         }
 
-        public async Task<ShoutsResponse> GetLatestShouts()
+        public async Task<ShoutsResponse> GetLatestShouts(ContinuationToken continuationToken = null)
         {
             var apiUrl = $"{ApiUrl}?code={_apiKey}";
 
             var jsonContent = JsonConvert.SerializeObject(new
             {
-                body = new
-                {
-                    continuationToken = ""
-                }
+                continuationToken
             });
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 

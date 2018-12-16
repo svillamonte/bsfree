@@ -5,6 +5,6 @@ namespace BSFree.Services.Interfaces
 {
     public interface IShoutsClient
     {
-        Task<ShoutsResponse> GetLatestShouts();
+        Task<ShoutsResponse> GetLatestShouts(ContinuationToken continuationToken = null);
     }
 }
