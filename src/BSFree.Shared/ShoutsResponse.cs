@@ -10,7 +10,7 @@ namespace BSFree.Shared
             Shouts = new HashSet<Shout>();
         }
 
-        public ICollection<Shout> Shouts { get; private set; }
+        public ICollection<Shout> Shouts { get; set; }
         public ContinuationToken ContinuationToken { get; set; }
     }
 }

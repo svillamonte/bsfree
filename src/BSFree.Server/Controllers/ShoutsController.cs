@@ -23,13 +23,5 @@ namespace BSFree.Server.Controllers
         {
             return await _shoutsClient.GetLatestShouts();
         }
-
-        // Temp until I know why Blazor rejects receiving a ShoutsResponse
-        [HttpGet("[action]")]
-        public async Task<IEnumerable<Shout>> LatestShoutsCollection()
-        {
-            var shoutsResponse = await _shoutsClient.GetLatestShouts();
-            return shoutsResponse.Shouts;
-        }
     }
 }

@@ -23,6 +23,7 @@
     
     protected override async Task OnInitAsync()
     {
-        shouts = await Http.GetJsonAsync<Shout[]>("api/Shouts/LatestShoutsCollection");
+        var response = await Http.GetJsonAsync<ShoutsResponse>("api/Shouts/LatestShouts");
+        shouts = response.Shouts.ToArray();
     }
 }
