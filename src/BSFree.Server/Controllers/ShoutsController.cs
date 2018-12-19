@@ -18,10 +18,10 @@ namespace BSFree.Server.Controllers
             _shoutsClient = shoutsClient;
         }
 
-        [HttpGet("[action]")]
-        public async Task<ShoutsResponse> LatestShouts()
+        [HttpPost("[action]")]
+        public async Task<ShoutsResponse> LatestShouts([FromBody] ContinuationToken continuationToken)
         {
-            return await _shoutsClient.GetLatestShouts();
+            return await _shoutsClient.GetLatestShouts(continuationToken);
         }
     }
 }

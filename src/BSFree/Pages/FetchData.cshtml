@@ -1,17 +1,17 @@
 ﻿@page "/fetchdata"
-@inject HttpClient Http
+@inject AppState state
 
 <h1>Weather forecast</h1>
-
+<button class="btn btn-primary" onclick="@state.GetNextShoutsPage">Next</button>
 <main>        
 
-    @if (shouts == null)
+    @if (state.CurrentShoutsPage == null)
     {
         <p><em>Loading...</em></p>
     }
     else
     {
-        @foreach (var shout in shouts)
+        @foreach (var shout in state.CurrentShoutsPage)
         {
             <ShoutDisplay shout=@shout />
         }
@@ -19,11 +19,13 @@
 </main>
 
 @functions {
-    Shout[] shouts;
-    
     protected override async Task OnInitAsync()
     {
-        var response = await Http.GetJsonAsync<ShoutsResponse>("api/Shouts/LatestShouts");
-        shouts = response.Shouts.ToArray();
+        await state.GetNextShoutsPage();
+    }
+
+    protected override void OnInit()
+    {
+        state.OnChange += StateHasChanged;
     }
 }
