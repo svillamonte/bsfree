@@ -1,3 +1,4 @@
+using BSFree.Helpers;
 using Microsoft.AspNetCore.Blazor.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -7,6 +8,7 @@ namespace BSFree
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IPaginationHelper, PaginationHelper>();
             services.AddSingleton<AppState>();
         }
 
