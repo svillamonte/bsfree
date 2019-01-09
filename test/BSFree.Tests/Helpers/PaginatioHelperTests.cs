@@ -181,5 +181,78 @@ namespace BSFree.Tests
             Assert.Equal(tokenToSecond, actualTokenToSecond);
             Assert.Null(actualTokenToFirst);
         }
+
+        [Fact]
+        public void HasNextPage_ForSecondToLastPage_ReturnsTrue()
+        {
+            // Arrange
+            var tokenOne = new ContinuationToken();
+            var tokenTwo = new ContinuationToken();
+            // var tokenThree = (ContinuationToken)null;
+
+            _paginationHelper.AddToken(tokenOne);
+            _paginationHelper.AddToken(tokenTwo);
+
+            // Act
+            var result = _paginationHelper.HasNextPage;
+
+            // Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void HasNextPage_ForLastPage_ReturnsFalse()
+        {
+            // Arrange
+            var tokenOne = new ContinuationToken();
+            var tokenTwo = new ContinuationToken();
+            var tokenThree = (ContinuationToken)null;
+
+            _paginationHelper.AddToken(tokenOne);
+            _paginationHelper.AddToken(tokenTwo);
+            _paginationHelper.AddToken(tokenThree);
+
+            // Act
+            var result = _paginationHelper.HasNextPage;
+
+            // Assert
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void HasPreviousPage_ForFirstPage_ReturnsFalse()
+        {
+            // Arrange
+            var tokenOne = new ContinuationToken();
+            // var tokenTwo = new ContinuationToken();
+            // var tokenThree = (ContinuationToken)null;
+
+            _paginationHelper.AddToken(tokenOne);
+
+            // Act
+            var result = _paginationHelper.HasPreviousPage;
+
+            // Assert
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void HasPreviousPage_ForLastPage_ReturnsTrue()
+        {
+            // Arrange
+            var tokenOne = new ContinuationToken();
+            var tokenTwo = new ContinuationToken();
+            var tokenThree = (ContinuationToken)null;
+
+            _paginationHelper.AddToken(tokenOne);
+            _paginationHelper.AddToken(tokenTwo);
+            _paginationHelper.AddToken(tokenThree);
+
+            // Act
+            var result = _paginationHelper.HasPreviousPage;
+
+            // Assert
+            Assert.True(result);
+        }
     }
 }

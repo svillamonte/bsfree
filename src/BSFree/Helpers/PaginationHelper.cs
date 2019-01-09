@@ -7,6 +7,8 @@ namespace BSFree.Helpers
     public interface IPaginationHelper
     {
         Stack<ShoutsPage> ShoutsPages { get; }
+        bool HasNextPage { get; }
+        bool HasPreviousPage { get; }
 
         ContinuationToken GetNextPageToken();
         ContinuationToken GetPreviousPageToken();
@@ -16,6 +18,9 @@ namespace BSFree.Helpers
     public class PaginationHelper : IPaginationHelper
     {
         public Stack<ShoutsPage> ShoutsPages { get; }
+        public bool HasNextPage => NextPageToken != null;
+        public bool HasPreviousPage => ShoutsPages.Count() > 1;
+
         private ContinuationToken NextPageToken { get; set; }
 
         public PaginationHelper()

@@ -15,6 +15,8 @@ namespace BSFree
         private readonly IPaginationHelper _paginationHelper;
 
         public IReadOnlyList<Shout> CurrentShoutsPage { get; private set; }
+        public bool HasPreviousPage => _paginationHelper.HasPreviousPage;
+        public bool HasNextPage => _paginationHelper.HasNextPage;
         public event Action OnChange;
 
         public AppState(HttpClient httpClient, IPaginationHelper paginationHelper)
