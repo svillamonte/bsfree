@@ -8,7 +8,8 @@ namespace BSFree
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IPaginationHelper, PaginationHelper>();
+            services.AddScoped<IContinuationTokenHelper, ContinuationTokenHelper>();
+            services.AddScoped<IPaginationService, PaginationService>();
             services.AddSingleton<AppState>();
         }
 

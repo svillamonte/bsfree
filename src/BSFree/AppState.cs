@@ -11,34 +11,23 @@ namespace BSFree
 {
     public class AppState
     {
-        private readonly HttpClient _httpClient;
-        private readonly IPaginationHelper _paginationHelper;
+        private readonly IPaginationService _paginationService;
 
         public IReadOnlyList<Shout> CurrentShoutsPage { get; private set; }
-        public bool IsLoading { get; private set; }
-        public bool HasPreviousPage => _paginationHelper.HasPreviousPage;
-        public bool HasNextPage => _paginationHelper.HasNextPage;
+        public bool IsLoading { get; private set; } = true;
+        public bool HasPreviousPage => _paginationService.HasPreviousPage;
+        public bool HasNextPage => _paginationService.HasNextPage;
         public event Action OnChange;
 
-        public AppState(HttpClient httpClient, IPaginationHelper paginationHelper)
-        {
-            _httpClient = httpClient;
-            _paginationHelper = paginationHelper;
-
-            IsLoading = true;
-        }
+        public AppState(IPaginationService paginationService) =>
+            _paginationService = paginationService;
 
         public async Task GetNextShoutsPage()
         {
             IsLoading = true;
             NotifyStateChanged();
 
-            var token = _paginationHelper.GetNextPageToken();
-            var response = await GetShoutsResponse(token);
-
-            _paginationHelper.AddToken(response.ContinuationToken);
-
-            CurrentShoutsPage = response.Shouts.ToArray();
+            CurrentShoutsPage = await _paginationService.GetNextShoutsPage();
             IsLoading = false;
             NotifyStateChanged();
         }
@@ -48,17 +37,9 @@ namespace BSFree
             IsLoading = true;
             NotifyStateChanged();
 
-            var token = _paginationHelper.GetPreviousPageToken();
-            var response = await GetShoutsResponse(token);
-
-            CurrentShoutsPage = response.Shouts.ToArray();
+            CurrentShoutsPage = await _paginationService.GetPreviousShoutsPage();
             IsLoading = false;
             NotifyStateChanged();
-        }
-
-        private async Task<ShoutsResponse> GetShoutsResponse(ContinuationToken token)
-        {
-            return await _httpClient.PostJsonAsync<ShoutsResponse>("api/Shouts/LatestShouts", token);
         }
 
         private void NotifyStateChanged() => OnChange?.Invoke();

@@ -4,26 +4,22 @@ using BSFree.Shared;
 
 namespace BSFree.Helpers
 {
-    public interface IPaginationHelper
+    public interface IContinuationTokenHelper
     {
         Stack<ShoutsPage> ShoutsPages { get; }
-        bool HasNextPage { get; }
-        bool HasPreviousPage { get; }
 
         ContinuationToken GetNextPageToken();
         ContinuationToken GetPreviousPageToken();
         void AddToken(ContinuationToken continuationToken);
     }
 
-    public class PaginationHelper : IPaginationHelper
+    public class ContinuationTokenHelper : IContinuationTokenHelper
     {
         public Stack<ShoutsPage> ShoutsPages { get; }
-        public bool HasNextPage => NextPageToken != null;
-        public bool HasPreviousPage => ShoutsPages.Count() > 1;
 
         private ContinuationToken NextPageToken { get; set; }
 
-        public PaginationHelper()
+        public ContinuationTokenHelper()
             => ShoutsPages = new Stack<ShoutsPage>();
 
         public ContinuationToken GetNextPageToken()
