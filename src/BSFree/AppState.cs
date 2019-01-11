@@ -15,6 +15,7 @@ namespace BSFree
         private readonly IPaginationHelper _paginationHelper;
 
         public IReadOnlyList<Shout> CurrentShoutsPage { get; private set; }
+        public bool IsLoading { get; private set; }
         public bool HasPreviousPage => _paginationHelper.HasPreviousPage;
         public bool HasNextPage => _paginationHelper.HasNextPage;
         public event Action OnChange;
@@ -23,25 +24,35 @@ namespace BSFree
         {
             _httpClient = httpClient;
             _paginationHelper = paginationHelper;
+
+            IsLoading = true;
         }
 
         public async Task GetNextShoutsPage()
         {
+            IsLoading = true;
+            NotifyStateChanged();
+
             var token = _paginationHelper.GetNextPageToken();
             var response = await GetShoutsResponse(token);
 
             _paginationHelper.AddToken(response.ContinuationToken);
 
             CurrentShoutsPage = response.Shouts.ToArray();
+            IsLoading = false;
             NotifyStateChanged();
         }
 
         public async Task GetPreviousShoutsPage()
         {
+            IsLoading = true;
+            NotifyStateChanged();
+
             var token = _paginationHelper.GetPreviousPageToken();
             var response = await GetShoutsResponse(token);
 
             CurrentShoutsPage = response.Shouts.ToArray();
+            IsLoading = false;
             NotifyStateChanged();
         }
 
