@@ -17,7 +17,7 @@ namespace BSFree.Helpers
 
     public class PaginationService : IPaginationService
     {
-        private readonly HttpClient _httpClient;
+        private readonly IApiClient _apiClient;
         private readonly IContinuationTokenHelper _continuationTokenHelper;
 
         public bool HasPreviousPage =>
@@ -25,16 +25,16 @@ namespace BSFree.Helpers
         public bool HasNextPage =>
             _continuationTokenHelper.GetNextPageToken() != null;
 
-        public PaginationService(HttpClient httpClient, IContinuationTokenHelper continuationTokenHelper)
+        public PaginationService(IApiClient apiClient, IContinuationTokenHelper continuationTokenHelper)
         {
-            _httpClient = httpClient;
+            _apiClient = apiClient;
             _continuationTokenHelper = continuationTokenHelper;
         }
 
         public async Task<Shout[]> GetNextShoutsPage()
         {
             var token = _continuationTokenHelper.GetNextPageToken();
-            var response = await GetShoutsResponse(token);
+            var response = await _apiClient.GetShoutsResponse(token);
 
             _continuationTokenHelper.AddToken(response.ContinuationToken);
             return response.Shouts.ToArray();
@@ -43,14 +43,9 @@ namespace BSFree.Helpers
         public async Task<Shout[]> GetPreviousShoutsPage()
         {
             var token = _continuationTokenHelper.GetPreviousPageToken();
-            var response = await GetShoutsResponse(token);
+            var response = await _apiClient.GetShoutsResponse(token);
 
             return response.Shouts.ToArray();
-        }
-
-        private async Task<ShoutsResponse> GetShoutsResponse(ContinuationToken token)
-        {
-            return await _httpClient.PostJsonAsync<ShoutsResponse>("api/Shouts/LatestShouts", token);
         }
     }
 }

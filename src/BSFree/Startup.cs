@@ -9,6 +9,7 @@ namespace BSFree
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IContinuationTokenHelper, ContinuationTokenHelper>();
+            services.AddScoped<IApiClient, ApiClient>();
             services.AddScoped<IPaginationService, PaginationService>();
             services.AddSingleton<AppState>();
         }

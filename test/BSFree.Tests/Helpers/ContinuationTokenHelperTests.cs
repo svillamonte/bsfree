@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace BSFree.Tests
+namespace BSFree.Tests.Helpers
 {
     public class ContinuationTokenHelperTests
     {
