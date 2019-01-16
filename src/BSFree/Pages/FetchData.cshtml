@@ -32,6 +32,7 @@
     protected override async Task OnInitAsync()
     {
         await state.GetNextShoutsPage();
+        await JSRuntime.Current.InvokeAsync<object>("initAppStateRef", new DotNetObjectRef(state));
     }
 
     protected override void OnInit()

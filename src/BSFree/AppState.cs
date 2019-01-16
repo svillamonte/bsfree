@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BSFree.Helpers;
 using BSFree.Shared;
 using Microsoft.AspNetCore.Blazor;
+using Microsoft.JSInterop;
 
 namespace BSFree
 {
@@ -22,6 +23,7 @@ namespace BSFree
         public AppState(IPaginationService paginationService) =>
             _paginationService = paginationService;
 
+        [JSInvokable]
         public async Task GetNextShoutsPage()
         {
             IsLoading = true;
