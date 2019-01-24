@@ -15,19 +15,9 @@ namespace BSFree.Server
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
+        private readonly IConfiguration _configuration;
 
-        public Startup(IHostingEnvironment env)
-        {
-            var builder = new ConfigurationBuilder();
-
-            if (env.IsDevelopment())
-            {
-                builder.AddUserSecrets<Startup>();
-            }
-
-            Configuration = builder.Build();
-        }
+        public Startup(IConfiguration config) => _configuration = config;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -37,7 +27,7 @@ namespace BSFree.Server
             services.AddScoped<IShoutsClient, ShoutsClient>(provider =>
             {
                 var httpClient = provider.GetService<IHttpClient>();
-                var apiKey = Configuration["ApiKey"];
+                var apiKey = _configuration["ApiKey"];
 
                 return new ShoutsClient(httpClient, apiKey);
             });
