@@ -15,7 +15,7 @@ namespace BSFree.Server
             WebHost.CreateDefaultBuilder(args)
                 .UseConfiguration(new ConfigurationBuilder()
                     .AddUserSecrets<Startup>()
-                    .AddCommandLine(args)
+                    .AddEnvironmentVariables()
                     .Build())
                 .UseStartup<Startup>()
                 .Build();
