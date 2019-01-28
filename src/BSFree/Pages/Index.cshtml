@@ -19,10 +19,7 @@
     }
     else
     {
-        @foreach (var shout in state.CurrentShoutsPage)
-        {
-            <ShoutDisplay shout=@shout />
-        }
+        <ShoutsPage Page=@state.CurrentShoutsPage />
     }
 </main>
 

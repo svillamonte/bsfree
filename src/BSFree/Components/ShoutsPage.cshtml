@@ -1,0 +1,10 @@
+@foreach (var shout in Page)
+{
+    <ShoutDisplay shout=@shout />
+}
+
+@functions 
+{
+    [Parameter]
+    IReadOnlyList<Shout> Page { get; set; }
+}
