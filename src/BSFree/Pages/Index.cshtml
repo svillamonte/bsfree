@@ -1,7 +1,40 @@
 ﻿@page "/"
+@inject AppState state
 
-<h1>Hello, world!</h1>
+@if (state.HasPreviousPage)
+{
+    <button class="btn btn-primary" onclick="@state.GetPreviousShoutsPage">Previous</button>
+}
 
-Welcome to your new app.
+@if (state.HasNextPage)
+{
+    <button class="btn btn-primary" onclick="@state.GetNextShoutsPage">Next</button>
+}
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<main>        
+
+    @if (state.IsLoading)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        @foreach (var shout in state.CurrentShoutsPage)
+        {
+            <ShoutDisplay shout=@shout />
+        }
+    }
+</main>
+
+@functions {
+    protected override async Task OnInitAsync()
+    {
+        await state.GetNextShoutsPage();
+        await JSRuntime.Current.InvokeAsync<object>("initAppStateRef", new DotNetObjectRef(state));
+    }
+
+    protected override void OnInit()
+    {
+        state.OnChange += StateHasChanged;
+    }
+}
