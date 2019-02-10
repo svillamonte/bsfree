@@ -1,6 +1,17 @@
 ﻿@page "/"
 @inject AppState state
 
+<div>
+@if (state.IsLoading)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <ShoutsPage Page=@state.CurrentShoutsPage />
+}
+</div>
+<div class="page-controls">
 @if (state.HasPreviousPage)
 {
     <button class="btn btn-primary" onclick="@state.GetPreviousShoutsPage">Previous</button>
@@ -10,18 +21,7 @@
 {
     <button class="btn btn-primary" onclick="@state.GetNextShoutsPage">Next</button>
 }
-
-<main>        
-
-    @if (state.IsLoading)
-    {
-        <p><em>Loading...</em></p>
-    }
-    else
-    {
-        <ShoutsPage Page=@state.CurrentShoutsPage />
-    }
-</main>
+</div>
 
 @functions {
     protected override async Task OnInitAsync()
