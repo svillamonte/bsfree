@@ -14,7 +14,7 @@ namespace BSFree
     {
         private readonly IPaginationService _paginationService;
 
-        public IReadOnlyList<Shout> CurrentShoutsPage { get; private set; }
+        public IReadOnlyList<Shout> CurrentShoutsPage { get; private set; } = new Shout[0];
         public bool IsLoading { get; private set; } = true;
         public bool HasPreviousPage => _paginationService.HasPreviousPage;
         public bool HasNextPage => _paginationService.HasNextPage;
@@ -29,9 +29,28 @@ namespace BSFree
             IsLoading = true;
             NotifyStateChanged();
 
-            CurrentShoutsPage = await _paginationService.GetNextShoutsPage();
+            var firstShoutId = string.Empty;
+            if (CurrentShoutsPage.Any())
+            {
+                var newPage = new List<Shout> { CurrentShoutsPage.Last() };
+                newPage.AddRange(await _paginationService.GetNextShoutsPage());
+
+                CurrentShoutsPage = newPage;
+                firstShoutId = CurrentShoutsPage[1].ShoutId;
+            }
+            else
+            {
+                CurrentShoutsPage = await _paginationService.GetNextShoutsPage();
+            }
+
             IsLoading = false;
             NotifyStateChanged();
+
+            // // funciona con breakpoint...
+            if (!string.IsNullOrEmpty(firstShoutId))
+            {
+                JSRuntime.Current.InvokeAsync<string>("scrollToShout", firstShoutId);
+            }
         }
 
         public async Task GetPreviousShoutsPage()
