@@ -32,6 +32,8 @@ namespace BSFree
             CurrentShoutsPage = await _paginationService.GetNextShoutsPage();
             IsLoading = false;
             NotifyStateChanged();
+
+            await JSRuntime.Current.InvokeAsync<string>("scrollToTop");
         }
 
         public async Task GetPreviousShoutsPage()
