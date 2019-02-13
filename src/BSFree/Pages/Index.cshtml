@@ -1,13 +1,14 @@
 ﻿@page "/"
 @inject AppState state
 
-<div>
-    <ShoutsPage Page=@state.CurrentShoutsPage />
-</div>
-
-<PageControls IsLoading=@state.IsLoading 
-              HasPrevious=@state.HasPreviousPage 
-              OnFetchPrevious=@state.GetPreviousShoutsPage />
+<DisplayContainer IsLoading=@(state.IsLoading && !state.CurrentShoutsPage.Any())>
+    <div>
+        <ShoutsPage Page=@state.CurrentShoutsPage />
+    </div>
+    <PageControls IsLoading=@state.IsLoading 
+                HasPrevious=@state.HasPreviousPage 
+                OnFetchPrevious=@state.GetPreviousShoutsPage />
+</DisplayContainer>
 
 @functions {
     protected override async Task OnInitAsync()

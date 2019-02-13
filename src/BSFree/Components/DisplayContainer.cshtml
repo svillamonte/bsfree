@@ -1,0 +1,22 @@
+<div>
+    @if (IsLoading) 
+    {
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
+    }
+    else
+    {
+        @ChildContent
+    }    
+</div>
+
+@functions 
+{
+    [Parameter] 
+    RenderFragment ChildContent { get; set; }
+
+    [Parameter] 
+    bool IsLoading { get; set; }
+}
