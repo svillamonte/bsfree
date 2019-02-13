@@ -2,26 +2,12 @@
 @inject AppState state
 
 <div>
-@if (state.IsLoading)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
     <ShoutsPage Page=@state.CurrentShoutsPage />
-}
 </div>
-<div class="page-controls">
-@if (state.HasPreviousPage)
-{
-    <button class="btn btn-primary" onclick="@state.GetPreviousShoutsPage">Previous</button>
-}
 
-@if (state.HasNextPage)
-{
-    <button class="btn btn-primary" onclick="@state.GetNextShoutsPage">Next</button>
-}
-</div>
+<PageControls IsLoading=@state.IsLoading 
+              HasPrevious=@state.HasPreviousPage 
+              OnFetchPrevious=@state.GetPreviousShoutsPage />
 
 @functions {
     protected override async Task OnInitAsync()

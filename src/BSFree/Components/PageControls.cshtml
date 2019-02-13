@@ -1,0 +1,22 @@
+<div class="page-controls">
+@if (!IsLoading && HasPrevious)
+{
+    <button class="btn btn-primary" onclick="@OnFetchPrevious">Previous</button>
+}
+
+@if (IsLoading) 
+{
+    <em>Loading...</em>
+}
+</div>
+
+@functions {    
+    [Parameter]
+    bool IsLoading { get; set;}
+    
+    [Parameter]
+    bool HasPrevious { get; set;}
+    
+    [Parameter]
+    Func<Task> OnFetchPrevious { get; set; }
+}

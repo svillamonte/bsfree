@@ -14,7 +14,7 @@ namespace BSFree
     {
         private readonly IPaginationService _paginationService;
 
-        public IReadOnlyList<Shout> CurrentShoutsPage { get; private set; }
+        public IReadOnlyList<Shout> CurrentShoutsPage { get; private set; } = new Shout[0];
         public bool IsLoading { get; private set; } = true;
         public bool HasPreviousPage => _paginationService.HasPreviousPage;
         public bool HasNextPage => _paginationService.HasNextPage;
