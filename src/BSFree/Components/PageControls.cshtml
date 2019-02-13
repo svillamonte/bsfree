@@ -1,19 +1,17 @@
 <div class="page-controls">
-@if (!IsLoading && HasPrevious)
-{
-    <button class="btn btn-primary" onclick="@OnFetchPrevious">Previous</button>
-}
+    @if (!IsLoading && HasPrevious)
+    {
+        <button class="btn btn-primary" onclick="@OnFetchPrevious">Previous</button>
+    }
 
-@if (IsLoading) 
-{
-    <div class="lds-ripple">
-        <div></div>
-        <div></div>
-    </div>
-}
+    @if (IsLoading) 
+    {
+        <Spinner />
+    }
 </div>
 
-@functions {    
+@functions 
+{    
     [Parameter]
     bool IsLoading { get; set;}
     
