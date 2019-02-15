@@ -33,7 +33,7 @@ namespace BSFree
             IsLoading = false;
             NotifyStateChanged();
 
-            await JSRuntime.Current.InvokeAsync<string>("scrollToTop");
+            await ScrollToTop();
         }
 
         public async Task GetPreviousShoutsPage()
@@ -44,8 +44,15 @@ namespace BSFree
             CurrentShoutsPage = await _paginationService.GetPreviousShoutsPage();
             IsLoading = false;
             NotifyStateChanged();
+
+            await ScrollToTop();
         }
 
         private void NotifyStateChanged() => OnChange?.Invoke();
+
+        private async Task ScrollToTop()
+        {
+            await JSRuntime.Current.InvokeAsync<string>("scrollToTop");
+        }
     }
 }
