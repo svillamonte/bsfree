@@ -1,7 +1,8 @@
 ﻿@page "/"
 @inject AppState state
 
-<DisplayContainer IsLoading=@(state.IsLoading && !state.CurrentShoutsPage.Any())>
+<DisplayContainer IsLoading=@state.IsLoading
+                  AnyContent=@state.AnyContent>
     <div>
         <ShoutsPage Page=@state.CurrentShoutsPage />
     </div>

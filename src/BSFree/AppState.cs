@@ -18,6 +18,7 @@ namespace BSFree
         public bool IsLoading { get; private set; } = true;
         public bool HasPreviousPage => _paginationService.HasPreviousPage;
         public bool HasNextPage => _paginationService.HasNextPage;
+        public bool AnyContent => CurrentShoutsPage.Any();
         public event Action OnChange;
 
         public AppState(IPaginationService paginationService) =>
@@ -35,7 +36,6 @@ namespace BSFree
             IsLoading = true;
             NotifyStateChanged();
 
-            // TODO Handle no shouts found
             CurrentShoutsPage = await _paginationService.GetNextShoutsPage();
             IsLoading = false;
             NotifyStateChanged();

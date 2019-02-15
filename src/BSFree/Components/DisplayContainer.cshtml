@@ -1,7 +1,14 @@
 <div>
-    @if (IsLoading) 
+    @if (!AnyContent) 
     {
-        <Spinner />
+        @if (IsLoading)
+        {
+            <Spinner />
+        }
+        else 
+        {
+            <strong>Nothing around...</strong>
+        }        
     }
     else
     {
@@ -16,4 +23,7 @@
 
     [Parameter] 
     bool IsLoading { get; set; }
+
+    [Parameter]
+    bool AnyContent { get; set; }
 }
