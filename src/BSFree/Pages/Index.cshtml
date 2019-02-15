@@ -6,8 +6,9 @@
         <ShoutsPage Page=@state.CurrentShoutsPage />
     </div>
     <PageControls IsLoading=@state.IsLoading 
-                HasPrevious=@state.HasPreviousPage 
-                OnFetchPrevious=@state.GetPreviousShoutsPage />
+                  HasPrevious=@state.HasPreviousPage 
+                  HasNext=@state.HasNextPage
+                  OnFetchPrevious=@state.GetPreviousShoutsPage />
 </DisplayContainer>
 
 @functions {

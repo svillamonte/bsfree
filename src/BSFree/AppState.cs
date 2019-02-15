@@ -26,9 +26,16 @@ namespace BSFree
         [JSInvokable]
         public async Task GetNextShoutsPage()
         {
+            // Fetched at least a page and no more after it
+            if (CurrentShoutsPage.Any() && !HasNextPage)
+            {
+                return;
+            }
+
             IsLoading = true;
             NotifyStateChanged();
 
+            // TODO Handle no shouts found
             CurrentShoutsPage = await _paginationService.GetNextShoutsPage();
             IsLoading = false;
             NotifyStateChanged();

@@ -8,6 +8,11 @@
     {
         <Spinner />
     }
+
+    @if (!HasNext)
+    {
+        <em>This is it</em>
+    }
 </div>
 
 @functions 
@@ -17,6 +22,9 @@
     
     [Parameter]
     bool HasPrevious { get; set;}
+    
+    [Parameter]
+    bool HasNext { get; set;}
     
     [Parameter]
     Func<Task> OnFetchPrevious { get; set; }
